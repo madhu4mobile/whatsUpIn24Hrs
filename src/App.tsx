@@ -29,15 +29,24 @@ export default function App() {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 600);
 
-      // Update active story based on scroll position
-      storyRefs.current.forEach((ref, i) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.5 && rect.bottom > 100) {
-            setActiveStory(i);
-          }
+      // Pick the topmost story currently in the active viewport band.
+      // The previous implementation set activeStory inside a forEach without
+      // breaking out, so the *last* match won — and when no story matched at
+      // all (e.g. scrolled fully past the list, or back to the hero), the
+      // value never reset and a stale story stayed highlighted.
+      const viewport = window.innerHeight;
+      let nextActive = -1;
+      for (let i = 0; i < storyRefs.current.length; i++) {
+        const ref = storyRefs.current[i];
+        if (!ref) continue;
+        const rect = ref.getBoundingClientRect();
+        if (rect.top < viewport * 0.5 && rect.bottom > 100) {
+          nextActive = i;
+          break; // topmost match wins
         }
-      });
+      }
+      // Functional update so we only re-render when the index actually changes.
+      setActiveStory((prev) => (prev === nextActive ? prev : nextActive));
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

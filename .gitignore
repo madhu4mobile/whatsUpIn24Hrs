@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+.env.local
+*.log
+.DS_Store
+
+# Build / pipeline artifacts
+dist/narration.mp3
+dist/narration.txt
+dist/narration.json
+dist/video-raw
+dist/daily-global-pulse.mp4

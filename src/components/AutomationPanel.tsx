@@ -13,6 +13,8 @@ import {
   scheduleInfo,
   publishingChannels,
   automationWorkflow,
+  previewMode,
+  getNextUpdateString,
 } from "../data/newsData";
 
 export default function AutomationPanel() {
@@ -41,20 +43,36 @@ export default function AutomationPanel() {
     year: "numeric",
   });
 
-  // Calculate hours until next update (5 AM EST)
+  // Calculate hours/minutes until the next 5:00 AM in America/New_York.
+  // Uses Intl.DateTimeFormat to read the *actual* NY wall-clock time, then
+  // works in "seconds since NY midnight" — this avoids the
+  // `new Date(toLocaleString(...))` trap, which silently reinterprets the
+  // formatted string in the caller's local timezone and produces the wrong
+  // diff for any non-EST device.
   const getHoursUntilNextUpdate = () => {
-    const now = new Date();
-    const estNow = new Date(
-      now.toLocaleString("en-US", { timeZone: "America/New_York" })
-    );
-    const nextUpdate = new Date(estNow);
-    nextUpdate.setHours(5, 0, 0, 0);
-    if (estNow.getHours() >= 5) {
-      nextUpdate.setDate(nextUpdate.getDate() + 1);
-    }
-    const diff = nextUpdate.getTime() - estNow.getTime();
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    }).formatToParts(currentTime);
+    const get = (type: string) =>
+      Number(parts.find((p) => p.type === type)?.value ?? 0);
+    // Intl returns "24" for midnight in some runtimes; normalize to 0.
+    const nyHour = get("hour") % 24;
+    const nyMin = get("minute");
+    const nySec = get("second");
+
+    const secondsSinceMidnightNY = nyHour * 3600 + nyMin * 60 + nySec;
+    const targetSeconds = 5 * 3600; // 5:00 AM
+    const diffSeconds =
+      secondsSinceMidnightNY < targetSeconds
+        ? targetSeconds - secondsSinceMidnightNY
+        : 86400 - secondsSinceMidnightNY + targetSeconds;
+
+    const hours = Math.floor(diffSeconds / 3600);
+    const minutes = Math.floor((diffSeconds % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
 
@@ -65,19 +83,41 @@ export default function AutomationPanel() {
         className="flex items-center justify-between w-full px-6 py-5 hover:bg-gray-800/30 transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-green-600/20 border border-green-500/30">
-            <RefreshCw className="w-5 h-5 text-green-400" />
-            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900 animate-pulse" />
+          <div
+            className={`relative flex items-center justify-center w-12 h-12 rounded-full border ${
+              previewMode
+                ? "bg-amber-600/20 border-amber-500/30"
+                : "bg-green-600/20 border-green-500/30"
+            }`}
+          >
+            <RefreshCw
+              className={`w-5 h-5 ${
+                previewMode ? "text-amber-400" : "text-green-400"
+              }`}
+            />
+            <span
+              className={`absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-gray-900 animate-pulse ${
+                previewMode ? "bg-amber-500" : "bg-green-500"
+              }`}
+            />
           </div>
           <div className="text-left">
             <h2 className="text-white font-bold text-lg flex items-center gap-2">
               Automated Daily Schedule
-              <span className="text-xs bg-green-600/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
-                ACTIVE
+              <span
+                className={`text-xs px-2 py-0.5 rounded-full border ${
+                  previewMode
+                    ? "bg-amber-600/20 text-amber-400 border-amber-500/30"
+                    : "bg-green-600/20 text-green-400 border-green-500/30"
+                }`}
+              >
+                {previewMode ? "PREVIEW" : "ACTIVE"}
               </span>
             </h2>
             <p className="text-gray-400 text-sm">
-              Next update in {getHoursUntilNextUpdate()} • {scheduleInfo.updateTime} {scheduleInfo.timezone}
+              {previewMode
+                ? "Auto-publish pipeline not wired up yet — local preview only."
+                : `Next update in ${getHoursUntilNextUpdate()} • ${scheduleInfo.updateTime} ${scheduleInfo.timezone}`}
             </p>
           </div>
         </div>
@@ -144,7 +184,11 @@ export default function AutomationPanel() {
                     </div>
                     <p className="text-gray-500 text-xs">{step.description}</p>
                   </div>
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
+                  {previewMode ? (
+                    <Clock className="w-4 h-4 text-gray-500 flex-shrink-0 mt-1" />
+                  ) : (
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
+                  )}
                 </div>
               ))}
             </div>
@@ -154,7 +198,9 @@ export default function AutomationPanel() {
           <div>
             <h3 className="text-white font-semibold text-sm mb-4 flex items-center gap-2">
               <Radio className="w-4 h-4 text-purple-400" />
-              Today's Publishing Status
+              {previewMode
+                ? "Target Channels (not yet published)"
+                : "Today's Publishing Status"}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {publishingChannels.map((channel) => (
@@ -179,6 +225,13 @@ export default function AutomationPanel() {
                           {channel.publishedAt}
                         </span>
                       </>
+                    ) : channel.status === "preview" ? (
+                      <>
+                        <Clock className="w-3 h-3 text-amber-400" />
+                        <span className="text-amber-400 text-[10px] font-medium">
+                          Preview
+                        </span>
+                      </>
                     ) : (
                       <>
                         <Clock className="w-3 h-3 text-amber-400" />
@@ -200,7 +253,7 @@ export default function AutomationPanel() {
               <span className="text-blue-300 text-sm">Next edition:</span>
             </div>
             <span className="text-white font-semibold text-sm">
-              {scheduleInfo.nextUpdate}
+              {getNextUpdateString(currentTime)}
             </span>
           </div>
         </div>

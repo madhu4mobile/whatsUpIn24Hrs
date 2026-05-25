@@ -1,6 +1,11 @@
 import { Copy, Check, Hash, Share2, CheckCircle, Clock } from "lucide-react";
 import { useState } from "react";
-import { hashtags, socialDescription, publishingChannels } from "../data/newsData";
+import {
+  hashtags,
+  socialDescription,
+  publishingChannels,
+  previewMode,
+} from "../data/newsData";
 
 export default function SocialSection() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -19,7 +24,18 @@ export default function SocialSection() {
         <h2 className="text-xl font-bold text-white">
           Auto-Publish & Distribution
         </h2>
+        {previewMode && (
+          <span className="text-[10px] uppercase tracking-wider bg-amber-600/20 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/30">
+            Preview
+          </span>
+        )}
       </div>
+      {previewMode && (
+        <p className="text-xs text-amber-300/80 -mt-2 mb-2">
+          Upload pipeline is not wired up yet. Channel cards below are target
+          destinations, not confirmations of a live post.
+        </p>
+      )}
 
       {/* Platform Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -41,6 +57,13 @@ export default function SocialSection() {
                   <CheckCircle className="w-3 h-3 text-green-400" />
                   <span className="text-green-400 text-xs font-medium">
                     Published {channel.publishedAt}
+                  </span>
+                </>
+              ) : channel.status === "preview" ? (
+                <>
+                  <Clock className="w-3 h-3 text-amber-400" />
+                  <span className="text-amber-400 text-xs font-medium">
+                    Preview
                   </span>
                 </>
               ) : (

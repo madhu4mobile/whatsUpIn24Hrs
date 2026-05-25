@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, initial-scale=1" />
+    <title>Daily Global Pulse — Video Render</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #0a0e1a;
+        color: #fff;
+        overflow: hidden;
+      }
+      /* Render page is locked to a fixed 1080×1920 stage. Playwright opens
+         this page at exactly that viewport. */
+      #video-root {
+        width: 1080px;
+        height: 1920px;
+        position: relative;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="video-root"></div>
+    <script type="module" src="/src/video/main.tsx"></script>
+  </body>
+</html>

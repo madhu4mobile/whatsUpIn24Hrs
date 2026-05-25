@@ -12,13 +12,44 @@ export default function HeroSection({ onStart }: { onStart: () => void }) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0e1a]">
-      {/* Background image with overlay */}
+      {/* Background: animated SVG globe + radial gradient (no external assets) */}
       <div className="absolute inset-0">
-        <img
-          src="/images/hero-globe.jpg"
-          alt="Global news network"
-          className="w-full h-full object-cover opacity-40"
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 40%, rgba(37,99,235,0.25) 0%, rgba(10,14,26,0.7) 45%, #0a0e1a 75%)",
+          }}
         />
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 800 800"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vmin] h-[140vmin] opacity-30 mix-blend-screen"
+          style={{ animation: "spinSlow 90s linear infinite" }}
+        >
+          <defs>
+            <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.5" />
+              <stop offset="60%" stopColor="#1e3a8a" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#0a0e1a" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="400" cy="400" r="340" fill="url(#globeGlow)" />
+          <g
+            fill="none"
+            stroke="#60a5fa"
+            strokeOpacity="0.35"
+            strokeWidth="1"
+          >
+            <circle cx="400" cy="400" r="340" />
+            <ellipse cx="400" cy="400" rx="340" ry="120" />
+            <ellipse cx="400" cy="400" rx="340" ry="220" />
+            <ellipse cx="400" cy="400" rx="340" ry="300" />
+            <ellipse cx="400" cy="400" rx="120" ry="340" />
+            <ellipse cx="400" cy="400" rx="220" ry="340" />
+            <ellipse cx="400" cy="400" rx="300" ry="340" />
+          </g>
+        </svg>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a]/70 via-[#0a0e1a]/50 to-[#0a0e1a]" />
       </div>
 

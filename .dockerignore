@@ -1,0 +1,20 @@
+# Keep the build context minimal — everything else is cloned/mounted at run time
+node_modules
+dist
+.git
+.env
+.env.local
+*.log
+
+# Skip large local artifacts that don't belong in the image
+dist/video-raw
+dist/segments
+dist/narration.mp3
+dist/narration.json
+dist/narration.txt
+dist/daily-global-pulse.mp4
+
+# OS / editor cruft
+.DS_Store
+.vscode
+.idea

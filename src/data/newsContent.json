@@ -1,0 +1,239 @@
+{
+  "videoTitle": "Summits, Crises, and Political Turmoil",
+  "stories": [
+    {
+      "id": 1,
+      "headline": "Trump and Xi hold second day of Beijing summit talks",
+      "summary": "US President Trump and Chinese leader Xi Jinping continued high-level negotiations in Beijing with discussions on Taiwan, trade, and bilateral relations. The talks featured ceremonial events and bilateral meetings, though no major trade breakthrough emerged despite bringing top US CEOs.",
+      "region": "Asia-Pacific",
+      "regionFlag": "🇨🇳",
+      "category": "DIPLOMACY",
+      "categoryColor": "#8b5cf6",
+      "keyFact": "Trump and Xi held talks on Taiwan and trade without announcing major deals",
+      "narration": "In Beijing, President Trump and Chinese leader Xi Jinping spent a second day in high-stakes talks. Despite bringing top American executives, no sweeping trade agreement emerged. The discussions focused on sensitive issues including Taiwan's status and broader bilateral tensions. Observers noted Trump's markedly conciliatory tone contrasted sharply with his rhetoric back home.",
+      "timestamp": "0:08 – 0:50",
+      "visualDescription": "Aerial shots of Beijing's Great Hall of the People with US and Chinese flags, diplomatic delegations in formal settings, handshake footage between Trump and Xi",
+      "musicMood": "Formal, measured diplomatic undertone with subtle tension",
+      "sources": [
+        "Guardian World",
+        "NYT World",
+        "BBC Top"
+      ],
+      "countryId": "156",
+      "cityName": "Beijing, China",
+      "cityCoords": [
+        116.4074,
+        39.9042
+      ]
+    },
+    {
+      "id": 2,
+      "headline": "UK Labour in turmoil as Starmer fights to keep premiership",
+      "summary": "British Prime Minister Keir Starmer faces a rebellion within his own Labour Party following heavy losses in local elections. Health Secretary Wes Streeting resigned, and senior figures including Andy Burnham are positioning themselves to challenge his leadership in what MPs are calling a possible dissolution of the party.",
+      "region": "Europe",
+      "regionFlag": "🇬🇧",
+      "category": "POLITICS",
+      "categoryColor": "#3b82f6",
+      "keyFact": "Labour suffered crushing defeats in municipal elections, triggering leadership crisis",
+      "narration": "Britain's Labour government faces collapse as Prime Minister Keir Starmer battles internal revolt. After devastating electoral losses, Health Secretary Wes Streeting resigned, saying he'd lost confidence in the leader. Senior figures are now openly discussing Starmer's future. MPs warn the party itself may not survive as a political force without dramatic change in the coming days.",
+      "timestamp": "0:50 – 1:32",
+      "visualDescription": "Parliament building exteriors, Starmer at despatch box, clips of local election results displays, concerned MPs in corridors",
+      "musicMood": "Tense, dramatic political crisis atmosphere",
+      "sources": [
+        "BBC Top",
+        "Guardian World",
+        "NPR World",
+        "France24 World"
+      ],
+      "countryId": "826",
+      "cityName": "London, United Kingdom",
+      "cityCoords": [
+        -0.1278,
+        51.5074
+      ]
+    },
+    {
+      "id": 3,
+      "headline": "Cuba's energy crisis deepens as fuel reserves completely depleted",
+      "summary": "Cuba announced it has run out of fuel and diesel as its aging power grid continues to fail under economic strain worsened by the US blockade. The government is now considering accepting aid from the Trump administration, though such assistance would come with conditions attached.",
+      "region": "North America",
+      "regionFlag": "🇨🇺",
+      "category": "ECONOMY",
+      "categoryColor": "#f59e0b",
+      "keyFact": "Cuba has exhausted all fuel reserves; eastern provinces experiencing major blackouts",
+      "narration": "Cuba's deepening energy crisis has reached a critical point. The island nation has now completely exhausted its fuel reserves, leaving eastern provinces in darkness. The aging power grid, already strained by economic collapse and a decades-long US blockade, has essentially ceased functioning. In a significant shift, Cuban leaders are now considering accepting emergency aid from Washington — with strings attached.",
+      "timestamp": "1:32 – 2:14",
+      "visualDescription": "Nighttime aerial views of Cuban cities going dark, citizens in blackened streets, power lines and infrastructure footage, CIA director arrival footage",
+      "musicMood": "Somber, crisis-driven industrial ambient",
+      "sources": [
+        "BBC World",
+        "NPR World",
+        "NYT World",
+        "Al Jazeera",
+        "France24 World"
+      ],
+      "countryId": "192",
+      "cityName": "Havana, Cuba",
+      "cityCoords": [
+        -82.3666,
+        23.1136
+      ]
+    },
+    {
+      "id": 4,
+      "headline": "Haiti gang violence claims seventy-eight lives in week",
+      "summary": "Rival gang clashes in Port-au-Prince's suburbs have killed at least seventy-eight people and wounded sixty-six since last Saturday, according to UN officials. The death toll includes ten civilians, adding to the Caribbean nation's ongoing crisis of spiralling gang violence and worsening insecurity over the past two years.",
+      "region": "North America",
+      "regionFlag": "🇭🇹",
+      "category": "CONFLICT",
+      "categoryColor": "#dc2626",
+      "keyFact": "Seventy-eight killed in five days of gang clashes; ten were civilians",
+      "narration": "Haiti's capital is gripped by escalating violence. In just five days, rival gangs battling in Port-au-Prince's suburbs have killed at least seventy-eight people, including ten civilians. Sixty-six others were wounded. The UN says the killings reflect a broader collapse of security across the Caribbean's poorest nation—a place already devastated by economic collapse, gang warfare, and institutional breakdown.",
+      "timestamp": "2:14 – 2:56",
+      "visualDescription": "Port-au-Prince streets, emergency services, displaced persons, humanitarian workers attending to victims",
+      "musicMood": "Dark, urgent, humanitarian crisis tone",
+      "sources": [
+        "France24 World"
+      ],
+      "countryId": "332",
+      "cityName": "Port-au-Prince, Haiti",
+      "cityCoords": [
+        -72.2854,
+        18.9712
+      ]
+    },
+    {
+      "id": 5,
+      "headline": "US Supreme Court protects abortion pill access nationwide",
+      "summary": "The US Supreme Court upheld nationwide access to the abortion medication mifepristone in a shadow-docket ruling, rejecting Louisiana's attempt to restrict the FDA's authority to regulate remote prescribing. The decision ensures mail-order abortion pills remain available across the country for now.",
+      "region": "North America",
+      "regionFlag": "🇺🇸",
+      "category": "POLICY",
+      "categoryColor": "#6366f1",
+      "keyFact": "Supreme Court blocks Louisiana's bid to restrict abortion pill access by mail",
+      "narration": "America's highest court has intervened to protect access to abortion medication nationwide. The Supreme Court rejected Louisiana's attempt to limit the FDA's oversight of mifepristone—the most common method of ending pregnancies in the United States. The ruling means women can continue obtaining abortion pills by mail. It's a significant victory for reproductive rights advocates in a deeply divided nation.",
+      "timestamp": "2:56 – 3:38",
+      "visualDescription": "US Supreme Court building, court proceedings, pro-choice and pro-life protesters outside courthouse, medical imagery",
+      "musicMood": "Determined, pivotal legal moment",
+      "sources": [
+        "BBC Top",
+        "Guardian World"
+      ],
+      "countryId": "840",
+      "cityName": "Washington, D.C., United States",
+      "cityCoords": [
+        -77.0369,
+        38.8951
+      ]
+    },
+    {
+      "id": 6,
+      "headline": "UN aid convoy struck twice by drones in eastern Ukraine",
+      "summary": "A United Nations humanitarian convoy delivering supplies to the city of Kherson in eastern Ukraine was targeted by drone strikes on two separate occasions. The attack underscores the ongoing dangers faced by aid workers attempting to deliver life-saving assistance in active conflict zones.",
+      "region": "Europe",
+      "regionFlag": "🇺🇦",
+      "category": "CONFLICT",
+      "categoryColor": "#dc2626",
+      "keyFact": "UN convoy hit twice by drones while delivering humanitarian aid in Kherson",
+      "narration": "A United Nations aid convoy has come under drone attack in eastern Ukraine. The humanitarian mission delivering vital supplies to the city of Kherson was struck twice—a stark reminder of the dangers facing aid workers in active war zones. The strikes highlight how the conflict continues to disrupt civilian access to essential food, medicine, and emergency supplies across Ukraine.",
+      "timestamp": "3:38 – 4:20",
+      "visualDescription": "Drone footage, convoy vehicles, damaged aid supplies, Kherson cityscape, humanitarian workers assessing damage",
+      "musicMood": "Tense, urgent humanitarian crisis",
+      "sources": [
+        "Al Jazeera"
+      ],
+      "countryId": "804",
+      "cityName": "Kherson, Ukraine",
+      "cityCoords": [
+        32.5948,
+        46.6558
+      ]
+    },
+    {
+      "id": 7,
+      "headline": "Israeli nationalists chant threats during Jerusalem Day march",
+      "summary": "Tens of thousands of Israeli marchers participated in an annual Jerusalem Day procession through the Old City, with far-right participants chanting violent slogans including 'death to Arabs' and calling for Palestinian villages to burn. The state-sponsored event commemorates Israel's 1967 military capture and annexation of East Jerusalem.",
+      "region": "Middle East",
+      "regionFlag": "🇮🇱",
+      "category": "CONFLICT",
+      "categoryColor": "#dc2626",
+      "keyFact": "Far-right marchers chanted 'death to the Arabs' during Jerusalem Day procession",
+      "narration": "Thousands of Israeli nationalists marched through Jerusalem's Old City during an annual commemoration of the city's capture in nineteen sixty-seven. Far-right participants chanted violent slogans—including death threats against Palestinians—and called for villages to burn. The state-sponsored event has become increasingly provocative, with marchers storming through the Muslim quarter in a show of territorial assertion.",
+      "timestamp": "4:20 – 5:02",
+      "visualDescription": "Jerusalem Old City streets, marching Israeli nationalists with flags, Muslim quarter footage, police presence, Palestinian residents",
+      "musicMood": "Tense, conflict-driven, charged atmosphere",
+      "sources": [
+        "Guardian World"
+      ],
+      "countryId": "376",
+      "cityName": "Jerusalem, Israel",
+      "cityCoords": [
+        35.2294,
+        31.7683
+      ]
+    },
+    {
+      "id": 8,
+      "headline": "Bolivia mining groups stage explosives protest against government",
+      "summary": "Mining sector protests escalated in Bolivia as groups staged demonstrations involving explosive devices while demanding the resignation of President Rodrigo Paz. The unrest reflects tensions over economic reform policies and labour rights in the country's crucial mining industry.",
+      "region": "South America",
+      "regionFlag": "🇧🇴",
+      "category": "CONFLICT",
+      "categoryColor": "#dc2626",
+      "keyFact": "Mining protesters set off explosions during antigovernment demonstrations",
+      "narration": "Bolivia's mining sector has erupted in protest. Groups staged demonstrations involving explosions as they demanded President Rodrigo Paz resign. The unrest reflects deep discontent over economic reforms—Paz was elected on a platform of market-oriented change. The mining industry, crucial to Bolivia's economy, is now a flashpoint for broader political instability.",
+      "timestamp": "5:02 – 5:44",
+      "visualDescription": "Mining regions of Bolivia, protest gatherings, explosion footage, miners with signs, President Paz footage",
+      "musicMood": "Urgent, industrial conflict tone",
+      "sources": [
+        "Al Jazeera"
+      ],
+      "countryId": "68",
+      "cityName": "La Paz, Bolivia",
+      "cityCoords": [
+        -68.1193,
+        -16.2902
+      ]
+    },
+    {
+      "id": 9,
+      "headline": "Brazil's far-right presidential hopeful caught seeking corruption funds",
+      "summary": "Flávio Bolsonaro, Brazil's leading right-wing presidential candidate, was caught on leaked tape asking a corruption-accused banker for twenty-six point eight million dollars to finance a film about his father, former President Jair Bolsonaro. The revelation is seen as a serious blow to his 2026 candidacy.",
+      "region": "South America",
+      "regionFlag": "🇧🇷",
+      "category": "POLITICS",
+      "categoryColor": "#3b82f6",
+      "keyFact": "Bolsonaro's son caught seeking twenty-six million dollars from corruption-accused banker",
+      "narration": "Brazil's leading right-wing presidential contender is facing serious trouble. Leaked voice recordings caught Flávio Bolsonaro asking a banker accused of corruption for twenty-six point eight million dollars to fund a film promoting his father. The revelation threatens to derail his twenty twenty-six campaign and raises fresh questions about the Bolsonaro family's relationship with questionable financial dealings.",
+      "timestamp": "5:44 – 6:00",
+      "visualDescription": "Brazilian political headquarters, Flávio Bolsonaro speaking footage, banking records, Jair Bolsonaro archive footage",
+      "musicMood": "Investigative, scandal-driven political drama",
+      "sources": [
+        "Guardian World"
+      ],
+      "countryId": "76",
+      "cityName": "Brasília, Brazil",
+      "cityCoords": [
+        -47.8822,
+        -15.7942
+      ]
+    }
+  ],
+  "hookNarration": "Good evening. China and America are talking again in Beijing—but without major breakthroughs. Britain's Labour government is in meltdown as the prime minister fights for his job. And across the globe, crises are mounting: Cuba's running out of fuel, Haiti's drowning in gang violence, and Ukraine's aid workers are under fire. This is your Daily Global Pulse.",
+  "closerNarration": "From boardrooms in Beijing to parliaments in crisis, from humanitarian disasters to political upheaval—the world today shows how fragile stability truly is. Diplomatic talks offer hope even as economic collapse spreads. Violence erupts where governance fails. Leaders fight for power while citizens pay the price. In these fractured times, we're watching the fault lines deepen. Stay informed. Stay vigilant. I'm your Daily Global Pulse.",
+  "socialDescription": "🌍 May 15, 2026: Trump and Xi meet in Beijing. UK Labour implodes. Cuba runs dry. Haiti bleeds. And the world keeps turning.",
+  "hashtags": [
+    "#DailyGlobalPulse",
+    "#WorldNews",
+    "#BreakingNews",
+    "#TrumpXiSummit",
+    "#ChinaDiplomacy",
+    "#LabourCrisis",
+    "#UKPolitics",
+    "#CubaEnergyCrisis",
+    "#HaitiViolence",
+    "#GlobalNews"
+  ],
+  "todayDate": "May 14, 2026",
+  "videoSubtitle": "Your Daily Global Pulse in 5 Minutes"
+}

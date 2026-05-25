@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Daily Global Pulse — Archive</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      html, body {
+        margin: 0;
+        background: #0a0e1a;
+        color: #fff;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      header {
+        padding: 24px 20px 12px;
+        border-bottom: 1px solid #1e293b;
+        position: sticky;
+        top: 0;
+        background: rgba(10, 14, 26, 0.9);
+        backdrop-filter: blur(12px);
+        z-index: 10;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #60a5fa;
+        text-align: center;
+      }
+      header p {
+        margin: 4px 0 0;
+        font-size: 12px;
+        color: #94a3b8;
+        text-align: center;
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px 16px 60px;
+      }
+      .empty {
+        margin: 40px 16px;
+        padding: 24px;
+        border: 1px dashed #334155;
+        border-radius: 12px;
+        color: #94a3b8;
+        font-size: 14px;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      .card {
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: border-color 0.15s, transform 0.15s;
+        cursor: pointer;
+      }
+      .card:hover { border-color: #334155; }
+      .card:active { transform: scale(0.98); }
+      .thumb-wrap {
+        aspect-ratio: 9 / 16;
+        background: #000;
+        position: relative;
+        overflow: hidden;
+      }
+      .thumb-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .thumb-wrap .play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 30%);
+      }
+      .thumb-wrap .play svg {
+        width: 64px;
+        height: 64px;
+        opacity: 0.85;
+        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+      }
+      .meta {
+        padding: 12px 14px 14px;
+      }
+      .meta .date {
+        color: #60a5fa;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .meta .title {
+        margin: 4px 0 6px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+      .meta .info {
+        font-size: 11px;
+        color: #64748b;
+      }
+      /* Player overlay */
+      .player {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 100;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .player.open { display: flex; }
+      .player .stage {
+        width: 100%;
+        max-width: 480px;
+        aspect-ratio: 9 / 16;
+        background: #000;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+      .player video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #000;
+      }
+      .player .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 12px;
+        font-size: 13px;
+      }
+      .player .actions a, .player .actions button {
+        color: #60a5fa;
+        text-decoration: none;
+        background: none;
+        border: 1px solid rgba(96, 165, 250, 0.3);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font: inherit;
+        cursor: pointer;
+      }
+      .player .actions button:hover { background: rgba(96, 165, 250, 0.1); }
+      .player .player-title {
+        color: #fff;
+        font-size: 13px;
+        margin-bottom: 12px;
+        text-align: center;
+        opacity: 0.7;
+      }
+      .updated {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 11px;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Daily Global Pulse</h1>
+      <p id="subhead">Archive</p>
+    </header>
+
+    <main>
+      <div id="content"></div>
+      <p class="updated" id="updated"></p>
+    </main>
+
+    <div class="player" id="player" onclick="closePlayer(event)">
+      <div class="player-title" id="playerTitle"></div>
+      <div class="stage" onclick="event.stopPropagation()">
+        <video id="playerVideo" controls playsinline preload="auto"></video>
+      </div>
+      <div class="actions" onclick="event.stopPropagation()">
+        <a id="downloadLink" href="#" download>Download MP4</a>
+        <button type="button" onclick="closePlayer(event)">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const $content = document.getElementById("content");
+      const $updated = document.getElementById("updated");
+      const $subhead = document.getElementById("subhead");
+      const $player = document.getElementById("player");
+      const $playerVideo = document.getElementById("playerVideo");
+      const $playerTitle = document.getElementById("playerTitle");
+      const $downloadLink = document.getElementById("downloadLink");
+
+      function fmtBytes(b) {
+        if (!b) return "";
+        const mb = b / 1024 / 1024;
+        return mb >= 1 ? mb.toFixed(1) + " MB" : (b / 1024).toFixed(0) + " KB";
+      }
+      function fmtDate(s) {
+        try {
+          return new Date(s + "T00:00:00Z").toLocaleDateString(undefined, {
+            weekday: "short", month: "short", day: "numeric", year: "numeric"
+          });
+        } catch { return s; }
+      }
+
+      function openPlayer(entry) {
+        $playerTitle.textContent = `${fmtDate(entry.date)} — ${entry.title}`;
+        $playerVideo.src = entry.mp4;
+        $downloadLink.href = entry.mp4;
+        $downloadLink.setAttribute(
+          "download",
+          entry.mp4.split("/").pop() || "video.mp4"
+        );
+        $player.classList.add("open");
+        // Autoplay attempt; phones may need a tap on the video
+        $playerVideo.play().catch(() => {});
+      }
+      function closePlayer(ev) {
+        if (ev && ev.target !== $player && ev.target.tagName === "BUTTON") {
+          // Allow Close button to call this directly
+        } else if (ev && ev.target !== $player && ev.target.tagName !== "BUTTON") {
+          return;
+        }
+        $player.classList.remove("open");
+        $playerVideo.pause();
+        $playerVideo.removeAttribute("src");
+        $playerVideo.load();
+      }
+
+      function renderGrid(index) {
+        if (!index.entries || index.entries.length === 0) {
+          $content.innerHTML = `
+            <div class="empty">
+              No reels rendered yet.<br><br>
+              The first daily run will populate this archive. Check the
+              container logs if you expected one already.
+            </div>`;
+          return;
+        }
+        const grid = document.createElement("div");
+        grid.className = "grid";
+        for (const e of index.entries) {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.addEventListener("click", () => openPlayer(e));
+          const thumbHtml = e.thumb
+            ? `<img src="${encodeURI(e.thumb)}" alt="" loading="lazy" />`
+            : '<div style="position:absolute;inset:0;background:#0a0e1a;"></div>';
+          card.innerHTML = `
+            <div class="thumb-wrap">
+              ${thumbHtml}
+              <div class="play">
+                <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="date">${fmtDate(e.date)}</div>
+              <div class="title"></div>
+              <div class="info">${e.storyCount ? e.storyCount + " stories • " : ""}${fmtBytes(e.sizeBytes)}</div>
+            </div>`;
+          card.querySelector(".title").textContent = e.title;
+          grid.appendChild(card);
+        }
+        $content.innerHTML = "";
+        $content.appendChild(grid);
+      }
+
+      async function load() {
+        try {
+          // cache-bust so we always see the freshest index
+          const res = await fetch("index.json?t=" + Date.now(), {
+            cache: "no-store",
+          });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const index = await res.json();
+          $subhead.textContent = `${index.showName || "Archive"} — ${index.entries.length} reel${index.entries.length === 1 ? "" : "s"}`;
+          renderGrid(index);
+          $updated.textContent =
+            "Index updated " + new Date(index.generatedAt).toLocaleString();
+        } catch (err) {
+          $content.innerHTML = `<div class="empty">Couldn't load index.json: ${err.message}</div>`;
+        }
+      }
+
+      // ESC closes the player
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && $player.classList.contains("open")) {
+          closePlayer({ target: { tagName: "BUTTON" } });
+        }
+      });
+
+      load();
+    </script>
+  </body>
+</html>

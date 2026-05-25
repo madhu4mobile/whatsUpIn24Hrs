@@ -55,6 +55,12 @@ html {
   }
 }
 
+/* Slow globe rotation for hero backdrop */
+@keyframes spinSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 /* Prevent FOUC */
 body {
   background-color: #0a0e1a;
